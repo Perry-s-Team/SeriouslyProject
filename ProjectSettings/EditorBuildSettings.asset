@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SeriouslyProject/Scenes/VillageScene.unity
     guid: a0cfa9f672ed7c645b1f52851442d6fd
+  - enabled: 1
+    path: Assets/SeriouslyProject/Scenes/FightScene.unity
+    guid: 0dcbf7c83f689d449a1e23a33c747a66
   m_configObjects: {}
