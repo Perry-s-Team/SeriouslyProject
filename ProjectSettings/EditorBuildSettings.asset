@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/SeriouslyProject/Scenes/StartMenu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/SeriouslyProject/Scenes/PlayerCastomization.unity
+    path: Assets/SeriouslyProject/Scenes/VillageScene.unity
     guid: b90ef78eccfe70441bd780c4448341a3
   - enabled: 1
-    path: Assets/SeriouslyProject/Scenes/VillageScene.unity
+    path: Assets/SeriouslyProject/Scenes/PlayerScene.unity
     guid: a0cfa9f672ed7c645b1f52851442d6fd
   - enabled: 1
     path: Assets/SeriouslyProject/Scenes/FightScene.unity
