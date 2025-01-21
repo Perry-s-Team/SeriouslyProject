@@ -33,18 +33,16 @@ public class ScoreBar : MonoBehaviour, IService
 
     }
 
-    private void FillBar() 
+    private void FillBar()
     {
         _fillAmount += _fillSpeed;
         image.fillAmount = _fillAmount;
-        //Debug.Log(_fillAmount);
     }
 
     private void UnFillBar()
     {
         _fillAmount -= _fillSpeed;
         image.fillAmount = _fillAmount;
-        //Debug.Log(_fillAmount);
     }
 
     private void WinOrLose()
@@ -53,25 +51,24 @@ public class ScoreBar : MonoBehaviour, IService
         {
             _fillAmount = 1f;
             _fillSpeed = 0f;
-            Debug.Log("Гойда");
+            Debug.Log("YouAreWin");
         }
-        else if (_fillAmount <= 0f) 
+        else if (_fillAmount <= 0f)
         {
-        _fillAmount = 0f;
-        _fillSpeed = 0f;
-        Debug.Log("YouAreLose");
+            _fillAmount = 0f;
+            _fillSpeed = 0f;
+            Debug.Log("YouAreLose");
         }
     }
 
     private void Register()
     {
         ServiceLocator.Initialize();
-        ServiceLocator.Current.Register<HoodMovement>(_hoodMovement);
+        ServiceLocator.Current.Register(_hoodMovement);
     }
 
     private void Init()
     {
         HoodMovement hoodMovement = ServiceLocator.Current.Get<HoodMovement>();
-
     }
 }

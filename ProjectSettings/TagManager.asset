@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fish
+  - battleSystem
+  - MenuPosition
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,7 @@ TagManager:
     locked: 0
   - name: FithicsUI
     uniqueID: 3374168021
+    locked: 0
+  - name: Ground
+    uniqueID: 192723511
     locked: 0
