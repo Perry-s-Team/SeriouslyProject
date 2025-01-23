@@ -8,6 +8,8 @@ using TMPro;
 
 public class FightManager : MonoBehaviour
 {
+    public StateFight CurrentStateFight = StateFight.None;
+
     [SerializeField] private TextMeshProUGUI fightTurn;
     [SerializeField] private ContextMenu contextMenu;
 
@@ -121,4 +123,14 @@ public class FightManager : MonoBehaviour
             characters.Remove(character);
         }
     }
+
+    public enum StateFight
+    {
+        None,
+        Attack,
+        Defence,
+        Heal
+    }
+
+
 }

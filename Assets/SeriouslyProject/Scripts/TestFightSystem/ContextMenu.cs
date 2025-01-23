@@ -1,9 +1,10 @@
 using FightSystem.Character;
+using FightSystem.Enemy;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static FightSystem.Character.Character;
+using static FightManager;
 
 [SelectionBase]
 public class ContextMenu : MonoBehaviour
@@ -15,6 +16,7 @@ public class ContextMenu : MonoBehaviour
     private List<TextMeshProUGUI> buttonTexts = new();
 
     private Character character;
+    private Enemy enemy;
 
     private void Start()
     {
@@ -42,7 +44,7 @@ public class ContextMenu : MonoBehaviour
 
         SetCharacter();
 
-        character.CurrentStateFight = StateFight.None;
+        fightManager.CurrentStateFight = StateFight.None;
     }
 
     public void SetCharacter()
@@ -50,9 +52,17 @@ public class ContextMenu : MonoBehaviour
          character = GetComponentInParent<Character>();
     }
 
+    public void SetEnemy()
+    {
+        enemy = GetComponentInParent<Enemy>();
+    }
+
     public void FightStateController()
     {
-        switch (character.CurrentStateFight)
+        if (!character.IsTurn)
+            return;
+
+        switch (fightManager.CurrentStateFight)
         {
             case StateFight.None:
                 Debug.Log("None");
@@ -60,6 +70,7 @@ public class ContextMenu : MonoBehaviour
 
             case StateFight.Attack:
                 Debug.Log("Attack");
+
                 break;
 
             case StateFight.Defence:
@@ -74,16 +85,16 @@ public class ContextMenu : MonoBehaviour
 
     public void SetStateAttack()
     {
-        character.CurrentStateFight = StateFight.Attack;
+        fightManager.CurrentStateFight = StateFight.Attack;
     }
 
     public void SetStateDefence()
     {
-        character.CurrentStateFight = StateFight.Defence;
+        fightManager.CurrentStateFight = StateFight.Defence;
     }
 
     public void SetStateHeal()
     {
-        character.CurrentStateFight = StateFight.Heal;
+        fightManager.CurrentStateFight = StateFight.Heal;
     }
 }

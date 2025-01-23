@@ -27,6 +27,11 @@ public class Base : MonoBehaviour
         Death();
     }
 
+    public int GiveDamage()
+    {
+        return Damage;
+    }
+
     public void Death()
     {
         if (Health <= 0)

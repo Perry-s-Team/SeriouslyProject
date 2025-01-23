@@ -7,7 +7,6 @@ namespace FightSystem.Character
     public class Character : Base
     {
         [SerializeField] private CharacterData characterData;
-        public StateFight CurrentStateFight = StateFight.None;
 
         private void Awake()
         {   
@@ -27,13 +26,6 @@ namespace FightSystem.Character
             Priority = characterData._priority;
         }
 
-        public enum StateFight
-        {
-            None,
-            Attack,
-            Defence,
-            Heal
-        }
 
 
     }
