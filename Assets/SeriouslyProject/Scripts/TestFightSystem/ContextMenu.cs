@@ -54,7 +54,8 @@ public class ContextMenu : MonoBehaviour
 
     public void SetEnemy()
     {
-        enemy = GetComponentInParent<Enemy>();
+        enemy = GetComponent<Enemy>();
+        Debug.Log(enemy.Name);
     }
 
     public void FightStateController()
@@ -70,7 +71,7 @@ public class ContextMenu : MonoBehaviour
 
             case StateFight.Attack:
                 Debug.Log("Attack");
-
+                
                 break;
 
             case StateFight.Defence:
