@@ -1018,6 +1018,7 @@ MonoBehaviour:
   stateEffect: 0
   blinkDelaySeconds: 0.5
   enemyData: {fileID: 11400000, guid: 18bb3a63be584f1419ec9f88cb945b0c, type: 2}
+  contextMenu: {fileID: 8611235187967662012}
 --- !u!1 &1281320556
 GameObject:
   m_ObjectHideFlags: 0

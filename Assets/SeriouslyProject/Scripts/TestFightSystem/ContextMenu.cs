@@ -16,7 +16,7 @@ public class ContextMenu : MonoBehaviour
     private List<TextMeshProUGUI> buttonTexts = new();
 
     private Character character;
-    private Enemy enemy;
+    public Enemy Enemy { get; set; }
 
     private void Start()
     {
@@ -52,17 +52,20 @@ public class ContextMenu : MonoBehaviour
          character = GetComponentInParent<Character>();
     }
 
+<<<<<<< Updated upstream
     public void SetEnemy()
     {
         enemy = GetComponent<Enemy>();
         Debug.Log(enemy.Name);
     }
 
+=======
+>>>>>>> Stashed changes
     public void FightStateController()
     {
         if (!character.IsTurn)
             return;
-
+        // Ќужно усложнить логику смены булевой IsTurn на false
         switch (fightManager.CurrentStateFight)
         {
             case StateFight.None:
@@ -71,7 +74,11 @@ public class ContextMenu : MonoBehaviour
 
             case StateFight.Attack:
                 Debug.Log("Attack");
+<<<<<<< Updated upstream
                 
+=======
+                Attack();
+>>>>>>> Stashed changes
                 break;
 
             case StateFight.Defence:
@@ -97,5 +104,11 @@ public class ContextMenu : MonoBehaviour
     public void SetStateHeal()
     {
         fightManager.CurrentStateFight = StateFight.Heal;
+    }
+
+    private void Attack()
+    {
+        Enemy.TakeDamage(character.GiveDamage());
+        Debug.Log(Enemy.Name + Enemy.Health);
     }
 }
