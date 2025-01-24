@@ -52,15 +52,6 @@ public class ContextMenu : MonoBehaviour
          character = GetComponentInParent<Character>();
     }
 
-<<<<<<< Updated upstream
-    public void SetEnemy()
-    {
-        enemy = GetComponent<Enemy>();
-        Debug.Log(enemy.Name);
-    }
-
-=======
->>>>>>> Stashed changes
     public void FightStateController()
     {
         if (!character.IsTurn)
@@ -74,11 +65,7 @@ public class ContextMenu : MonoBehaviour
 
             case StateFight.Attack:
                 Debug.Log("Attack");
-<<<<<<< Updated upstream
-                
-=======
                 Attack();
->>>>>>> Stashed changes
                 break;
 
             case StateFight.Defence:
