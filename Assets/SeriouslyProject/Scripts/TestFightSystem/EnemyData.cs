@@ -13,6 +13,7 @@ namespace FightSystem.Data
         public int _damage;
         public int _priority;
         public int _health;
+        public int _mana;
         public int _maxHealth;
         public int _heal;
     }

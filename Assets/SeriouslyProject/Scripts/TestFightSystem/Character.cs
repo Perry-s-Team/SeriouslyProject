@@ -31,6 +31,7 @@ namespace FightSystem.Character
             Damage = characterData._damage;
             MaxHealth = characterData._maxHealth;
             Health = characterData._health;
+            Mana = characterData._mana;
             Priority = characterData._priority;
         }
 

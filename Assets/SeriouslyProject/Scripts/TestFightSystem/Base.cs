@@ -18,6 +18,7 @@ public class Base : MonoBehaviour
     public int Heal { get; set; }
     public int MaxHealth { get; set; }
     public int Health { get; set; }
+    public int Mana { get; set; }
     public int Priority { get; set; }
 
     public void TakeDamage(int _damage)

@@ -31,6 +31,7 @@ namespace FightSystem.Enemy
             MaxHealth = enemyData._maxHealth;
             Health = enemyData._health;
             Priority = enemyData._priority;
+            Mana = enemyData._mana;
         }
 
         private void SetComponent()
