@@ -6,6 +6,8 @@ namespace FightSystem.Character
 {
     public class Character : Base
     {
+        public bool IsTurn { get; set; } = true;
+
         [SerializeField] private CharacterData characterData;
 
         private void Awake()

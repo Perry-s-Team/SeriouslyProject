@@ -7,7 +7,6 @@ public class Base : MonoBehaviour
     [SerializeField] StateEffect stateEffect;
     [SerializeField] float blinkDelaySeconds = 0.5f;
 
-    public bool IsTurn { get; set; } = true;
     public bool IsBlinking { get; set; } = true;
 
     public string Name { get;  set; }
@@ -71,17 +70,6 @@ public class Base : MonoBehaviour
                 yield return null;
             }
         }
-    }
-
-    public void SetTurn(bool _isTurn)
-    {
-        IsTurn = _isTurn;
-    }
-
-    public void Turn()
-    {
-        IsTurn = false;
-        Debug.Log("My Turn: " + Name);
     }
 
     public enum StateEffect

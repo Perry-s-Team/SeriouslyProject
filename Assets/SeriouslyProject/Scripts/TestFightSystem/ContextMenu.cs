@@ -10,6 +10,7 @@ using static FightManager;
 public class ContextMenu : MonoBehaviour
 {
     [SerializeField] private FightManager fightManager;
+    [SerializeField] private ContextText contextText;
 
     [SerializeField] private RectTransform contextMenu;
     [SerializeField] private List<Button> buttons = new();
@@ -66,6 +67,7 @@ public class ContextMenu : MonoBehaviour
             case StateFight.Attack:
                 Debug.Log("Attack");
                 Attack();
+                character.IsTurn = false;
                 break;
 
             case StateFight.Defence:
@@ -95,6 +97,12 @@ public class ContextMenu : MonoBehaviour
 
     private void Attack()
     {
+        if (Enemy == null)
+        {
+            contextText.ChangeContext("Ñhoose an enemy", 2f);
+            return;
+        }
+        else Debug.Log(Enemy.Name);
         Enemy.TakeDamage(character.GiveDamage());
         Debug.Log(Enemy.Name + Enemy.Health);
     }
