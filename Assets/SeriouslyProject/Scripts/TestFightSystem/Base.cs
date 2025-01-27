@@ -26,6 +26,11 @@ public class Base : MonoBehaviour
         Death();
     }
 
+    public int GiveHeal()
+    {
+        return Heal;
+    }
+
     public int GiveDamage()
     {
         return Damage;

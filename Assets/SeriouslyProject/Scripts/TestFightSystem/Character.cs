@@ -9,12 +9,18 @@ namespace FightSystem.Character
         public bool IsTurn { get; set; } = true;
 
         [SerializeField] private CharacterData characterData;
+        [SerializeField] private ContextMenu contextMenu;
+
+        private Button button;
 
         private void Awake()
         {   
             Sprite = GetComponent<Image>();
 
             Inizialize();
+
+            button = GetComponent<Button>();
+            button.onClick.AddListener(SetComponent);
         }
 
         private void Inizialize()
@@ -28,7 +34,9 @@ namespace FightSystem.Character
             Priority = characterData._priority;
         }
 
-
-
+        private void SetComponent()
+        {
+            contextMenu.CharacterToHeal = GetComponent<Character>();
+        }
     }
 }

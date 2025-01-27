@@ -17,6 +17,8 @@ public class ContextMenu : MonoBehaviour
     private List<TextMeshProUGUI> buttonTexts = new();
 
     private Character character;
+
+    public Character CharacterToHeal { get; set; }
     public Enemy Enemy { get; set; }
 
     private void Start()
@@ -45,12 +47,12 @@ public class ContextMenu : MonoBehaviour
 
         SetCharacter();
 
-        fightManager.CurrentStateFight = StateFight.None;
+        //fightManager.CurrentStateFight = StateFight.None;
     }
 
     public void SetCharacter()
     {
-         character = GetComponentInParent<Character>();
+        character = GetComponentInParent<Character>();
     }
 
     public void FightStateController()
@@ -67,7 +69,6 @@ public class ContextMenu : MonoBehaviour
             case StateFight.Attack:
                 Debug.Log("Attack");
                 Attack();
-                character.IsTurn = false;
                 break;
 
             case StateFight.Defence:
@@ -99,11 +100,32 @@ public class ContextMenu : MonoBehaviour
     {
         if (Enemy == null)
         {
-            contextText.ChangeContext("Ñhoose an enemy", 2f);
+            contextText.ChangeContext("Ñhoose an enemy to attack", 2f);
             return;
         }
-        else Debug.Log(Enemy.Name);
-        Enemy.TakeDamage(character.GiveDamage());
-        Debug.Log(Enemy.Name + Enemy.Health);
+        else
+        {
+            Enemy.TakeDamage(character.GiveDamage());
+            Debug.Log(Enemy.Name + " " + Enemy.Health);
+            character.IsTurn = false;
+            Enemy = null;
+        }
     }
+
+    private void Heal()
+    {
+        if (CharacterToHeal == null)
+        {
+            contextText.ChangeContext("Ñhoose an character to heal", 2f);
+            return;
+        }
+        else
+        {
+            CharacterToHeal.TakeHeal(character.GiveHeal());
+            Debug.Log(CharacterToHeal.Name + " " + CharacterToHeal.Health);
+            character.IsTurn = false;
+            CharacterToHeal = null;
+        }
+    }
+
 }
