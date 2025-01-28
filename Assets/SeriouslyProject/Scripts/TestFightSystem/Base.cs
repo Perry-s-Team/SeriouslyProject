@@ -7,6 +7,11 @@ public class Base : MonoBehaviour
     [SerializeField] StateEffect stateEffect;
     [SerializeField] float blinkDelaySeconds = 0.5f;
 
+    [Header("HealthBar")]
+    public Slider healthBar;
+    public Gradient healthGgradient;
+    public Image fill;
+
     public bool IsBlinking { get; set; } = true;
 
     public string Name { get;  set; }
@@ -24,7 +29,14 @@ public class Base : MonoBehaviour
     public void TakeDamage(int _damage)
     {
         Health -= _damage;
+        healthBar.value = Health;
+        SetGradient(healthBar.normalizedValue);
         Death();
+    }
+
+    internal void SetGradient(float _value)
+    {
+        fill.color = healthGgradient.Evaluate(_value);
     }
 
     public int GiveHeal()
@@ -51,6 +63,8 @@ public class Base : MonoBehaviour
         if (Health < MaxHealth)
         {
             Health += _heal;
+            healthBar.value = Health;
+            SetGradient(healthBar.normalizedValue);
         }
         else Health = MaxHealth;
     }

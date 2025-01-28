@@ -47,7 +47,7 @@ public class ContextMenu : MonoBehaviour
 
         SetCharacter();
 
-        //fightManager.CurrentStateFight = StateFight.None;
+        fightManager.CurrentStateFight = StateFight.None;
     }
 
     public void SetCharacter()
@@ -57,30 +57,31 @@ public class ContextMenu : MonoBehaviour
 
     public void FightStateController()
     {
-        if (!character.IsTurn)
-            return;
-        // Ќужно усложнить логику смены булевой IsTurn на false
-        switch (fightManager.CurrentStateFight)
+        if (character.IsTurn)
         {
-            case StateFight.None:
-                Debug.Log("None");
-                break;
+            // Ќужно усложнить логику смены булевой IsTurn на false
+            switch (fightManager.CurrentStateFight)
+            {
+                case StateFight.None:
+                    Debug.Log("None");
+                    break;
 
-            case StateFight.Attack:
-                Debug.Log("Attack");
-                Attack();
-                break;
+                case StateFight.Attack:
+                    Debug.Log("Attack");
+                    Attack();
+                    break;
 
-            case StateFight.Defence:
-                Debug.Log("Defence");
-                break;
+                case StateFight.Defence:
+                    Debug.Log("Defence");
+                    break;
 
-            case StateFight.Heal:
-                Debug.Log("Heal");
-                break;
+                case StateFight.Heal:
+                    Debug.Log("Heal");
+                    break;
+            }
         }
-    }
-
+    }    
+       
     public void SetStateAttack()
     {
         fightManager.CurrentStateFight = StateFight.Attack;

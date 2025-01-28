@@ -6,9 +6,11 @@ namespace FightSystem.Character
 {
     public class Character : Base
     {
-        public bool IsTurn { get; set; } = true;
+        public bool IsTurn { get; set; } = false;
 
+        [Header("DataCharacter")]
         [SerializeField] private CharacterData characterData;
+        [Header("ContextMenu")]
         [SerializeField] private ContextMenu contextMenu;
 
         private Button button;
@@ -33,6 +35,12 @@ namespace FightSystem.Character
             Health = characterData._health;
             Mana = characterData._mana;
             Priority = characterData._priority;
+
+            healthBar.minValue = 0;
+            healthBar.maxValue = MaxHealth;
+            healthBar.value = Health;
+
+            SetGradient(1f);
         }
 
         private void SetComponent()

@@ -18,7 +18,6 @@ public class FightManager : MonoBehaviour
 
     [SerializeField] private List<Base> bases = new();
 
-
     private void Start()
     {
         InitializationLists();
@@ -91,7 +90,7 @@ public class FightManager : MonoBehaviour
         _character.IsTurn = true;
         while (_character.IsTurn)
         {
-            StartEnemyBlinking();
+            StartEnemyBlinking();//заменить на bool Enemy
             yield return null;
         }
     }
@@ -131,6 +130,4 @@ public class FightManager : MonoBehaviour
         Defence,
         Heal
     }
-
-
 }
