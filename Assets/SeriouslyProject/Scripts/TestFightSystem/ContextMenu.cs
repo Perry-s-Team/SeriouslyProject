@@ -71,12 +71,13 @@ public class ContextMenu : MonoBehaviour
                     Attack();
                     break;
 
-                case StateFight.Defence:
-                    Debug.Log("Defence");
-                    break;
-
                 case StateFight.Heal:
                     Debug.Log("Heal");
+                    Heal();
+                    break;
+
+                case StateFight.Defence:
+                    Debug.Log("Defence");
                     break;
             }
         }
@@ -106,6 +107,7 @@ public class ContextMenu : MonoBehaviour
         }
         else
         {
+            fightManager.StopEnemyBlinking();
             Enemy.TakeDamage(character.GiveDamage());
             Debug.Log(Enemy.Name + " " + Enemy.Health);
             character.IsTurn = false;
@@ -122,6 +124,8 @@ public class ContextMenu : MonoBehaviour
         }
         else
         {
+            Debug.Log("CharacterToHeal " + CharacterToHeal.Name);
+            Debug.Log("character " + character.Name);
             CharacterToHeal.TakeHeal(character.GiveHeal());
             Debug.Log(CharacterToHeal.Name + " " + CharacterToHeal.Health);
             character.IsTurn = false;
