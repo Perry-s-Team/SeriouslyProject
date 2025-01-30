@@ -94,7 +94,7 @@ public class FightManager : MonoBehaviour
             yield return null;
         }
     }
-    private Character GetCharacterLowestHP()
+    public Character GetCharacterLowestHP()
     {
         return characters.OrderBy(character => character.Health).FirstOrDefault(); ;
     }

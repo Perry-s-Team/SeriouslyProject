@@ -1,4 +1,5 @@
 using FightSystem.Data;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,9 +31,13 @@ namespace FightSystem.Enemy
             Damage = enemyData._damage;
             MaxHealth = enemyData._maxHealth;
             Health = enemyData._health;
-            Priority = enemyData._priority;
+            MaxMana = enemyData._maxMana;
             Mana = enemyData._mana;
+            Heal = enemyData._heal;
+            Priority = enemyData._priority;
 
+            healthText.text = Health.ToString() + " /" + MaxHealth;
+            manaText.text = Mana.ToString() + " /" + MaxMana;
             healthBar.minValue = 0;
             healthBar.maxValue = MaxHealth;
             healthBar.value = Health;

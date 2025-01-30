@@ -16,7 +16,9 @@ MonoBehaviour:
   _description: Ephir
   _sprite: {fileID: -121506831, guid: 62ac10b75a33b5648aef1ef50de04c13, type: 3}
   _damage: 30
-  _priority: 20
-  _health: 200
+  _priority: 10
+  _maxMana: 200
+  _mana: 200
   _maxHealth: 200
+  _health: 200
   _heal: 50

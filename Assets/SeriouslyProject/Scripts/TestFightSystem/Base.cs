@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class Base : MonoBehaviour
     [SerializeField] float blinkDelaySeconds = 0.5f;
 
     [Header("HealthBar")]
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI manaText;
     public Slider healthBar;
     public Gradient healthGgradient;
     public Image fill;
@@ -23,6 +26,7 @@ public class Base : MonoBehaviour
     public int Heal { get; set; }
     public int MaxHealth { get; set; }
     public int Health { get; set; }
+    public int MaxMana { get; set; }
     public int Mana { get; set; }
     public int Priority { get; set; }
 
@@ -30,6 +34,7 @@ public class Base : MonoBehaviour
     {
         Health -= _damage;
         healthBar.value = Health;
+        healthText.text = Health.ToString() + " / " + MaxHealth;
         SetGradient(healthBar.normalizedValue);
         Death();
     }
@@ -54,6 +59,7 @@ public class Base : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
+            healthText.text = Health.ToString() + " / " + MaxHealth;
             Debug.Log(Name + ": Was Killed");
         }
     }
@@ -63,6 +69,7 @@ public class Base : MonoBehaviour
         if (Health < MaxHealth)
         {
             Health += _heal;
+            healthText.text = Health.ToString() + " / " + MaxHealth;
             healthBar.value = Health;
             SetGradient(healthBar.normalizedValue);
         }

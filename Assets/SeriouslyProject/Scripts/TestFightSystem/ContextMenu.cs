@@ -17,8 +17,6 @@ public class ContextMenu : MonoBehaviour
     private List<TextMeshProUGUI> buttonTexts = new();
 
     private Character character;
-
-    public Character CharacterToHeal { get; set; }
     public Enemy Enemy { get; set; }
 
     private void Start()
@@ -109,7 +107,6 @@ public class ContextMenu : MonoBehaviour
         {
             fightManager.StopEnemyBlinking();
             Enemy.TakeDamage(character.GiveDamage());
-            Debug.Log(Enemy.Name + " " + Enemy.Health);
             character.IsTurn = false;
             Enemy = null;
         }
@@ -117,6 +114,7 @@ public class ContextMenu : MonoBehaviour
 
     private void Heal()
     {
+        Character CharacterToHeal = fightManager.GetCharacterLowestHP();
         if (CharacterToHeal == null)
         {
             contextText.ChangeContext("Ñhoose an character to heal", 2f);
@@ -124,12 +122,10 @@ public class ContextMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log("CharacterToHeal " + CharacterToHeal.Name);
-            Debug.Log("character " + character.Name);
+            Debug.Log("CharacterToHeal " + CharacterToHeal.Name + " " + character.GiveHeal());
             CharacterToHeal.TakeHeal(character.GiveHeal());
             Debug.Log(CharacterToHeal.Name + " " + CharacterToHeal.Health);
             character.IsTurn = false;
-            CharacterToHeal = null;
         }
     }
 

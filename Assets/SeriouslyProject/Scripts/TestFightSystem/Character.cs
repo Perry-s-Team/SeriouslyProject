@@ -22,7 +22,6 @@ namespace FightSystem.Character
             Inizialize();
 
             button = GetComponent<Button>();
-            button.onClick.AddListener(SetComponent);
         }
 
         private void Inizialize()
@@ -33,19 +32,18 @@ namespace FightSystem.Character
             Damage = characterData._damage;
             MaxHealth = characterData._maxHealth;
             Health = characterData._health;
+            MaxMana = characterData._maxMana;
             Mana = characterData._mana;
+            Heal = characterData._heal;
             Priority = characterData._priority;
 
+            healthText.text = Health.ToString() + " / " + MaxHealth;
+            manaText.text = Mana.ToString() + " / " + MaxMana;
             healthBar.minValue = 0;
             healthBar.maxValue = MaxHealth;
             healthBar.value = Health;
 
             SetGradient(1f);
-        }
-
-        private void SetComponent()
-        {
-            contextMenu.CharacterToHeal = GetComponent<Character>();
         }
     }
 }
