@@ -22,3 +22,6 @@ MonoBehaviour:
   _maxHealth: 75
   _health: 75
   _heal: 50
+  _armor: 5
+  _defence: 0
+  _healDefence: 10

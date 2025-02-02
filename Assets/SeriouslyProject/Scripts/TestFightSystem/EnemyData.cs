@@ -17,5 +17,6 @@ namespace FightSystem.Data
         public int _maxHealth;
         public int _health;
         public int _heal;
+        public int _armor;
     }
 }

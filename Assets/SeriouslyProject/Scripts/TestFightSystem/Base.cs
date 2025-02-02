@@ -26,13 +26,14 @@ public class Base : MonoBehaviour
     public int Heal { get; set; }
     public int MaxHealth { get; set; }
     public int Health { get; set; }
+    public int Armor { get; set; } = 1;
     public int MaxMana { get; set; }
     public int Mana { get; set; }
     public int Priority { get; set; }
 
     public void TakeDamage(int _damage)
     {
-        Health -= _damage;
+        Health -= _damage - (Armor);
         healthBar.value = Health;
         healthText.text = Health.ToString() + " / " + MaxHealth;
         SetGradient(healthBar.normalizedValue);

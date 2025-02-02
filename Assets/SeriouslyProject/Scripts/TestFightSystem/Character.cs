@@ -36,6 +36,7 @@ namespace FightSystem.Character
             Mana = characterData._mana;
             Heal = characterData._heal;
             Priority = characterData._priority;
+            Armor = characterData._armor;
 
             healthText.text = Health.ToString() + " / " + MaxHealth;
             manaText.text = Mana.ToString() + " / " + MaxMana;

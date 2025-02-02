@@ -14,7 +14,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private ContextMenu contextMenu;
 
     [SerializeField] private List<Enemy> enemies = new();
-    [SerializeField] private List<Character> characters = new();
+    public List<Character> characters = new();
 
     [SerializeField] private List<Base> bases = new();
 
@@ -127,7 +127,6 @@ public class FightManager : MonoBehaviour
     {
         None,
         Attack,
-        Defence,
         Heal
     }
 }

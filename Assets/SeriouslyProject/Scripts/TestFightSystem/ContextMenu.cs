@@ -12,7 +12,7 @@ public class ContextMenu : MonoBehaviour
     [SerializeField] private FightManager fightManager;
     [SerializeField] private ContextText contextText;
 
-    [SerializeField] private RectTransform contextMenu;
+    private RectTransform contextMenu;
     [SerializeField] private List<Button> buttons = new();
     private List<TextMeshProUGUI> buttonTexts = new();
 
@@ -21,9 +21,15 @@ public class ContextMenu : MonoBehaviour
 
     private void Start()
     {
+        contextMenu = GetComponent<RectTransform>();
         SetButtonName();
     }
 
+    public void SetTrigger()
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.SetTrigger("DropDown");
+    }
     private void SetButtonName()
     {
         buttons.AddRange(GetComponentsInChildren<Button>());
@@ -73,22 +79,13 @@ public class ContextMenu : MonoBehaviour
                     Debug.Log("Heal");
                     Heal();
                     break;
-
-                case StateFight.Defence:
-                    Debug.Log("Defence");
-                    break;
             }
         }
-    }    
-       
+    }
+
     public void SetStateAttack()
     {
         fightManager.CurrentStateFight = StateFight.Attack;
-    }
-
-    public void SetStateDefence()
-    {
-        fightManager.CurrentStateFight = StateFight.Defence;
     }
 
     public void SetStateHeal()
