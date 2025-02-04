@@ -23,5 +23,3 @@ MonoBehaviour:
   _health: 200
   _heal: 50
   _armor: 10
-  _defence: 0
-  _healDefence: 0

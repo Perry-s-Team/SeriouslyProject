@@ -1,5 +1,4 @@
 using FightSystem.Data;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +47,7 @@ namespace FightSystem.Enemy
         private void SetComponent()
         {
             contextMenu.Enemy = GetComponent<Enemy>();
+            contextMenu.FightStateController();
         }
     }
 }

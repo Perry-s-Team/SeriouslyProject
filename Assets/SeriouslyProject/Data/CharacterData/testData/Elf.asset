@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Elf
   _description: Elf
   _sprite: {fileID: 21300000, guid: c9235e1fdc3982844a02eb9c804fc720, type: 3}
-  _damage: 20
+  _damage: 10
   _priority: 10
   _maxMana: 105
   _mana: 105
@@ -23,5 +23,3 @@ MonoBehaviour:
   _health: 50
   _heal: 20
   _armor: 5
-  _defence: 0
-  _healDefence: 5

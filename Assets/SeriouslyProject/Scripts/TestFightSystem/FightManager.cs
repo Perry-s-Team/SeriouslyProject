@@ -109,7 +109,7 @@ public class FightManager : MonoBehaviour
         enemies.ForEach(enemy => enemy.IsBlinking = false);
     }
 
-    private void StartEnemyBlinking()
+    public void StartEnemyBlinking()
     {
         enemies.ForEach(enemy => enemy.IsBlinking = true);
     }

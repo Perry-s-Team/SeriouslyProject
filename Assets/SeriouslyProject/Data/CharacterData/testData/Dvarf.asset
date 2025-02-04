@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Dvarf
   _description: Dvarf
   _sprite: {fileID: 611899083, guid: 62ac10b75a33b5648aef1ef50de04c13, type: 3}
-  _damage: 25
+  _damage: 15
   _priority: 5
   _maxMana: 125
   _mana: 125
@@ -23,5 +23,3 @@ MonoBehaviour:
   _health: 75
   _heal: 50
   _armor: 5
-  _defence: 0
-  _healDefence: 10

@@ -1,5 +1,6 @@
 using FightSystem.Character;
 using FightSystem.Enemy;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class ContextMenu : MonoBehaviour
     private Character character;
     public Enemy Enemy { get; set; }
 
+    private bool isEnemySelection = false;
     private void Start()
     {
         contextMenu = GetComponent<RectTransform>();
@@ -97,7 +99,7 @@ public class ContextMenu : MonoBehaviour
     {
         if (Enemy == null)
         {
-            contextText.ChangeContext("Ñhoose an enemy to attack", 2f);
+            //contextText.ChangeContext("Ñhoose an enemy to attack", 2f);
             return;
         }
         else
@@ -112,18 +114,11 @@ public class ContextMenu : MonoBehaviour
     private void Heal()
     {
         Character CharacterToHeal = fightManager.GetCharacterLowestHP();
-        if (CharacterToHeal == null)
-        {
-            contextText.ChangeContext("Ñhoose an character to heal", 2f);
-            return;
-        }
-        else
-        {
-            Debug.Log("CharacterToHeal " + CharacterToHeal.Name + " " + character.GiveHeal());
-            CharacterToHeal.TakeHeal(character.GiveHeal());
-            Debug.Log(CharacterToHeal.Name + " " + CharacterToHeal.Health);
-            character.IsTurn = false;
-        }
+
+        Debug.Log("CharacterToHeal " + CharacterToHeal.Name + " " + character.GiveHeal());
+        CharacterToHeal.TakeHeal(character.GiveHeal());
+        Debug.Log(CharacterToHeal.Name + " " + CharacterToHeal.Health);
+        character.IsTurn = false;
     }
 
 }
