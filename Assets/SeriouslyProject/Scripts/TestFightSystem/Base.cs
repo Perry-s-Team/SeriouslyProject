@@ -12,6 +12,7 @@ public class Base : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI manaText;
     public Slider healthBar;
+    public Slider manaBar;
     public Gradient healthGgradient;
     public Image fill;
 
@@ -37,6 +38,15 @@ public class Base : MonoBehaviour
         healthBar.value = Health;
         healthText.text = Health.ToString() + " / " + MaxHealth;
         SetGradient(healthBar.normalizedValue);
+        Death();
+    }
+
+    public void TakeMagicDamage(int _damage)
+    {
+        Mana -= _damage - (_damage / 100);
+        manaBar.value = Mana;
+        manaText.text = Mana.ToString() + " / " + MaxMana;
+        SetGradient(manaBar.normalizedValue);
         Death();
     }
 

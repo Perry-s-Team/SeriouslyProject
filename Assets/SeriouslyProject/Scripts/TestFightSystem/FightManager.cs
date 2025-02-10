@@ -13,7 +13,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fightTurn;
     [SerializeField] private ContextMenu contextMenu;
 
-    [SerializeField] private List<Enemy> enemies = new();
+    public List<Enemy> enemies = new();
     public List<Character> characters = new();
 
     [SerializeField] private List<Base> bases = new();
@@ -127,6 +127,7 @@ public class FightManager : MonoBehaviour
     {
         None,
         Attack,
-        Heal
+        Heal,
+        MagicAttack
     }
 }

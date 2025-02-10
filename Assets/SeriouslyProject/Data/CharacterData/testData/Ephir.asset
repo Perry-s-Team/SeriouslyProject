@@ -19,7 +19,7 @@ MonoBehaviour:
   _priority: 10
   _maxMana: 200
   _mana: 200
-  _maxHealth: 200
-  _health: 200
+  _maxHealth: 600
+  _health: 600
   _heal: 50
   _armor: 10
