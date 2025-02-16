@@ -14,6 +14,9 @@ public class FishLogic : MonoBehaviour
     [Header("GetHoodProgress")]
     [SerializeField] private HoodMovement hoodMovement;
 
+    public bool IsFishingWin { get; set; } = false;
+    public bool IsFishingLose { get; set; } = false;
+
     private float randomPosition;
 
     public void StartFishing()
@@ -50,11 +53,25 @@ public class FishLogic : MonoBehaviour
     {
         var progress = hoodMovement.progress;
 
-        if (progress >= 1 || progress <= 0)
+        IsFishingWin = false;
+        IsFishingLose = false;
+
+        if (progress >= 1)
         {
-            canvas.gameObject.SetActive(false);
-            StopAllCoroutines();
+            IsFishingWin = true;
+            EndFishing();
         }
+        if (progress <= 0)
+        {
+            IsFishingLose = true;
+            EndFishing();
+        }
+    }
+
+    private void EndFishing()
+    {
+        canvas.gameObject.SetActive(false);
+        StopAllCoroutines();
     }
 
     private void SetRandomPosition()
