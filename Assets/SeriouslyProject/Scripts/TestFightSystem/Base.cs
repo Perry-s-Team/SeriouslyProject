@@ -38,7 +38,7 @@ public class Base : MonoBehaviour
         healthBar.value = Health;
         healthText.text = Health.ToString() + " / " + MaxHealth;
         SetGradient(healthBar.normalizedValue);
-        Death();
+        TryDeath();
     }
 
     public void TakeMagicDamage(int _damage)
@@ -47,7 +47,7 @@ public class Base : MonoBehaviour
         manaBar.value = Mana;
         manaText.text = Mana.ToString() + " / " + MaxMana;
         SetGradient(manaBar.normalizedValue);
-        Death();
+        TryDeath();
     }
 
     internal void SetGradient(float _value)
@@ -65,7 +65,7 @@ public class Base : MonoBehaviour
         return Damage;
     }
 
-    public void Death()
+    public void TryDeath()
     {
         if (Health <= 0)
         {

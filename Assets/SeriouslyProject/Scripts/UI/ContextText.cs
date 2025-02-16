@@ -3,21 +3,12 @@ using UnityEngine;
 
 public class ContextText : MonoBehaviour
 {
-    public TextMeshProUGUI textMeshPro { get; set; }
+    [SerializeField] private TextMeshProUGUI fjghtTurn;
+    [SerializeField] private int turn;
 
-    private void Start()
+    public void ChangeTurnText()
     {
-        textMeshPro = GetComponent<TextMeshProUGUI>();
-    }
-
-    public void ChangeContext(string _text, float _waiting)
-    {
-        textMeshPro.text = _text;
-        Invoke(nameof(ClearText), _waiting);
-    }
-
-    private void ClearText()
-    {
-        textMeshPro.text = null;
+        turn++;
+        fjghtTurn.text = $"’Ó‰: {turn}";
     }
 }

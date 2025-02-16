@@ -1,68 +1,70 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HoodMovement : MonoBehaviour, IService
+public class HoodMovement : MonoBehaviour
 {
-    [SerializeField] private float _progress = 0;
-    [SerializeField] private float _speedOfProgress;
-    [SerializeField] private float _tabForce = 10f;
+    [Header("HoodProgress")]
+    [SerializeField] private Image imageProgress;
+    [SerializeField] public float progress;
+    [SerializeField] private float speedOfProgress;
+    [SerializeField] private float hoodSpeed = 10f;
 
-    private Rigidbody2D rb;
-    private bool progressIsGo;
-    private bool buttonIsDown;
+    private Rigidbody2D rigidBody;
+    private bool isTriggered = false;
 
-    public bool fishInTrigger = false;
-
-
-
-    private void Start()
+    public void StartFishing()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        FihingMovement();
+        if (Input.GetMouseButton(0))
+        {
+            Moving();
+        }
+        if (!isTriggered)
+        {
+            ProgressMinus();
+        }
     }
 
-    private void FihingMovement()
+    private void Moving()
     {
-        if (progressIsGo == false && _progress > 0)
-        {
-            _progress -= _speedOfProgress * 0.7f * Time.deltaTime;
-            //Debug.Log("-= progress");
-        }
-        //if (buttonIsDown == true) rb.Sleep();
-        if (buttonIsDown == true)
-        {
-            rb.AddForce(Vector2.up * _tabForce, ForceMode2D.Force);
-            //Debug.Log("Hood up");
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            buttonIsDown = true;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            buttonIsDown = false;
-        }
+        rigidBody.AddForce(Vector2.up * hoodSpeed, ForceMode2D.Force);
     }
 
-
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (other.CompareTag("Fish"))
+        if (collision.CompareTag("Fish"))
         {
-            fishInTrigger = true;
+            isTriggered = true;
+            ProgressAdd();
         }
-        else fishInTrigger = false;
     }
-    private void OnTriggerExit2D(Collider2D other)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.CompareTag("Fish"))
+        if (collision.CompareTag("Fish"))
         {
-            fishInTrigger = false;
+            isTriggered = false;
         }
-
     }
 
+    private void ProgressAdd()
+    {
+        if (progress < 1)
+        {
+            progress += speedOfProgress * speedOfProgress / 10 * Time.deltaTime;
+            imageProgress.fillAmount = progress;
+        }
+    }
+    private void ProgressMinus()
+    {
+        if (progress > 0)
+        {
+            progress -= speedOfProgress * speedOfProgress / 6 * Time.deltaTime;
+            imageProgress.fillAmount = progress;
+        }
+    }
 }

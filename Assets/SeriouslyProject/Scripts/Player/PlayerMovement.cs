@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private float speed;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D rigidBody;
 
-    void Awake()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
     {
         Vector2 inputVector = GameInput.Instance.GetMovementVector();
         inputVector = inputVector.normalized;
-        rb.MovePosition(rb.position + inputVector * (_speed * Time.fixedDeltaTime));
+        rigidBody.MovePosition(rigidBody.position + inputVector * (speed * Time.fixedDeltaTime));
 
     }
 }

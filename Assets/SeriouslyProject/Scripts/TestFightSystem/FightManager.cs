@@ -12,6 +12,7 @@ public class FightManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI fightTurn;
     [SerializeField] private ContextMenu contextMenu;
+    [SerializeField] private ContextText contextText;
 
     public List<Enemy> enemies = new();
     public List<Character> characters = new();
@@ -46,6 +47,7 @@ public class FightManager : MonoBehaviour
                 yield return StartCoroutine(WaitCharacterTurn(character));
             }
         }
+        contextText.ChangeTurnText();
         yield return StartCoroutine(EndFight());
     }
 

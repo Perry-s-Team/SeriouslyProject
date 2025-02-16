@@ -3,7 +3,6 @@ using FightSystem.Enemy;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,7 +21,6 @@ public class ContextMenu : MonoBehaviour
     private Character character;
     public Enemy Enemy { get; set; }
 
-    private bool isEnemySelection = false;
     private void Start()
     {
         contextMenu = GetComponent<RectTransform>();
@@ -137,6 +135,7 @@ public class ContextMenu : MonoBehaviour
         }
         else
         {
+            character.TakeMagicDamage(10);
             fightManager.StopEnemyBlinking();
             Enemy.TakeMagicDamage(character.GiveDamage());
             character.IsTurn = false;
@@ -151,8 +150,7 @@ public class ContextMenu : MonoBehaviour
 
         if (totalCharacterPriority > totalEnemyPriority)
         {
-            int currentScene = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(--currentScene);
+            SceneManager.LoadScene("PlayerCastomization");
         }
         else if (totalEnemyPriority > totalCharacterPriority)
         {
