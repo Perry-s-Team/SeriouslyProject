@@ -4,7 +4,7 @@ public class TestMovement : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
 
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
 
     private void Start()
     {

@@ -31,11 +31,12 @@ public class FishingSystem : MonoBehaviour
             Debug.Log($"Вы поймали рыбу: {fishes[randomIndex].name}");
             return fishes[randomIndex];
         }
-        else
+        else if (fishLogic.IsFishingLose)
         {
             Debug.Log("Not Cath Fish");
             return null;
         }
+        else return null;
     }
 
     public void StartFishing()
