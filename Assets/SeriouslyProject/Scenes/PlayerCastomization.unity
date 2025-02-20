@@ -174,6 +174,7 @@ MonoBehaviour:
   maxY: {fileID: 1241831962}
   minY: {fileID: 1026732067}
   hoodMovement: {fileID: 1825493936}
+  fishingSystem: {fileID: 482065447}
 --- !u!1 &102085933
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,7 +4591,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -4712,7 +4713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageProgress: {fileID: 916919894}
-  progress: 0.3
+  progress: 0.4
   speedOfProgress: 1
   hoodSpeed: 8
 --- !u!1 &1852761692

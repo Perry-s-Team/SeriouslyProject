@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class FishLogic : MonoBehaviour
@@ -13,55 +12,55 @@ public class FishLogic : MonoBehaviour
     [SerializeField] private RectTransform minY;
     [Header("GetHoodProgress")]
     [SerializeField] private HoodMovement hoodMovement;
+    [SerializeField] private FishingSystem fishingSystem;
 
     public bool IsFishingWin { get; set; } = false;
     public bool IsFishingLose { get; set; } = false;
 
     private float randomPosition;
+    private float progress;
+    private bool isFishingActive = false;
 
     public void StartFishing()
     {
         Initialization();
-        StartCoroutine(MoveFishCoroutine());
+        isFishingActive = true;
     }
 
-    private IEnumerator MoveFishCoroutine()
+    private void Update()
     {
-        while (true)
+        if (isFishingActive)
         {
+            MoveFish();
+            TryEndFishing();
+        }
+    }
+
+    private void MoveFish()
+    {
+        if (Mathf.Abs(fishTransform.position.y - randomPosition) > 0.01f)
+        {
+            Vector3 position = fishTransform.position;
+            position.y = Mathf.Lerp(position.y, randomPosition, Time.deltaTime * fish.speed);
+            position.y = Mathf.Clamp(position.y, minY.position.y, maxY.position.y);
+            fishTransform.position = position;
+        }
+        else
+        {           
             SetRandomPosition();
-
-            while (Mathf.Abs(fishTransform.position.y - randomPosition) > 0.01f)
-            {
-                Vector3 position = fishTransform.position;
-                position.y = Mathf.Lerp(position.y, randomPosition, Time.deltaTime * fish.speed);
-
-                position.y = Mathf.Clamp(position.y, minY.position.y, maxY.position.y);
-
-                fishTransform.position = position;
-
-                TryEndFishing();
-
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(1f);
         }
     }
 
     private void TryEndFishing()
     {
-        var progress = hoodMovement.progress;
+        progress = hoodMovement.progress;
 
-        IsFishingWin = false;
-        IsFishingLose = false;
-
-        if (progress >= 1)
+        if (progress >= 1f)
         {
             IsFishingWin = true;
             EndFishing();
         }
-        if (progress <= 0)
+        if (progress <= 0.05f)
         {
             IsFishingLose = true;
             EndFishing();
@@ -70,8 +69,10 @@ public class FishLogic : MonoBehaviour
 
     private void EndFishing()
     {
+        hoodMovement.progress = 0.4f;
+        isFishingActive = false;
+        fishingSystem.TryGetRandomFish();
         canvas.gameObject.SetActive(false);
-        StopAllCoroutines();
     }
 
     private void SetRandomPosition()
@@ -84,6 +85,8 @@ public class FishLogic : MonoBehaviour
 
     private void Initialization()
     {
+        progress = hoodMovement.progress;
         canvas.gameObject.SetActive(true);
+        SetRandomPosition();
     }
 }

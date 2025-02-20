@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Somi
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 69610a98dd10cab489d7c2fde3c2c7e5, type: 3}
-  _speed: 5
+  _speed: 6

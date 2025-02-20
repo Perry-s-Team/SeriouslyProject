@@ -17,4 +17,14 @@ public class TestMovement : MonoBehaviour
         inputVector = inputVector.normalized;
         rigidbody.MovePosition(rigidbody.position + inputVector * (playerSpeed * Time.fixedDeltaTime));
     }
+
+    public void FrezeMoving()
+    {
+        rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    public void UnFrezeMoving()
+    {
+        rigidbody.constraints = RigidbodyConstraints2D.None;
+    }
 }

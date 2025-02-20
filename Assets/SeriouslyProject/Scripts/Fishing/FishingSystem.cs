@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FishingSystem : MonoBehaviour
@@ -14,35 +15,43 @@ public class FishingSystem : MonoBehaviour
             fishingPlace = _fishingPlace;
 
             StartFishing();
-
-            TryGetRandomFish();
         }
     }
 
-
-
-    private ScriptableObject TryGetRandomFish()
+    public void TryGetRandomFish()
     {
         var fishes = fishingPlace.fishes;
 
         if (fishLogic.IsFishingWin)
         {
-            int randomIndex = Random.Range(0, fishes.Count);
-            Debug.Log($"Вы поймали рыбу: {fishes[randomIndex].name}");
-            return fishes[randomIndex];
+            Debug.Log($"Вы поймали рыбу: {fishes[GetRandomFish(fishes)].name}");
+            fishLogic.IsFishingWin = false;
+            fishingPlace = null;
         }
         else if (fishLogic.IsFishingLose)
         {
-            Debug.Log("Not Cath Fish");
-            return null;
+            Debug.Log("Вы не поймали рыбу");
+            fishLogic.IsFishingLose = false;
+            fishingPlace = null;
         }
-        else return null;
     }
 
     public void StartFishing()
     {
+        ResetFishingState();
         fishLogic.StartFishing();
         fish.Initialization();
         fishingHood.StartFishing();
+    }
+
+    private int GetRandomFish(List<ScriptableObject> _fishes)
+    {
+        return Random.Range(0, _fishes.Count);
+    }
+
+    public void ResetFishingState()
+    {
+        fishLogic.IsFishingWin = false;
+        fishLogic.IsFishingLose = false;
     }
 }
