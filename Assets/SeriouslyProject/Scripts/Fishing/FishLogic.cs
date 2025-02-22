@@ -6,7 +6,7 @@ public class FishLogic : MonoBehaviour
     [SerializeField] private Fish fish;
     [SerializeField] private RectTransform fishTransform;
     [Header("Fishing")]
-    [SerializeField] private Canvas canvas;
+    [SerializeField] private GameObject objToAcive;
     [Header("MovingBorder")]
     [SerializeField] private RectTransform maxY;
     [SerializeField] private RectTransform minY;
@@ -72,7 +72,7 @@ public class FishLogic : MonoBehaviour
         hoodMovement.progress = 0.4f;
         isFishingActive = false;
         fishingSystem.TryGetRandomFish();
-        canvas.gameObject.SetActive(false);
+        objToAcive.gameObject.SetActive(false);
     }
 
     private void SetRandomPosition()
@@ -86,7 +86,7 @@ public class FishLogic : MonoBehaviour
     private void Initialization()
     {
         progress = hoodMovement.progress;
-        canvas.gameObject.SetActive(true);
+        objToAcive.SetActive(true);
         SetRandomPosition();
     }
 }

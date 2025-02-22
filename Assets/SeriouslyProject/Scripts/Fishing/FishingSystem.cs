@@ -3,36 +3,38 @@ using UnityEngine;
 
 public class FishingSystem : MonoBehaviour
 {
+    [Header("Fishing")]
     [SerializeField] private HoodMovement fishingHood;
     [SerializeField] private FishLogic fishLogic;
+    [SerializeField] private TestPlayer player;
     [SerializeField] private Fish fish;
-    private FishingPlace fishingPlace;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    [Header("Bobber")]
+    [SerializeField] private GameObject bobberObject;
+    [SerializeField] private Bobber bobber;
+
+    private void Update()
     {
-        if (collision.gameObject.TryGetComponent(out FishingPlace _fishingPlace))
+        if (Input.GetKeyDown(player.keyCode))
         {
-            fishingPlace = _fishingPlace;
-
-            StartFishing();
+            GameObject newBobber = Instantiate(bobberObject, transform);
+            bobber = newBobber.GetComponent<Bobber>();
         }
     }
 
     public void TryGetRandomFish()
     {
-        var fishes = fishingPlace.fishes;
-
         if (fishLogic.IsFishingWin)
         {
-            Debug.Log($"Вы поймали рыбу: {fishes[GetRandomFish(fishes)].name}");
+            Debug.Log($"Вы поймали рыбу: {bobber.randomFishes.name}");
             fishLogic.IsFishingWin = false;
-            fishingPlace = null;
+            bobber.fishingPlace = null;
         }
         else if (fishLogic.IsFishingLose)
         {
             Debug.Log("Вы не поймали рыбу");
             fishLogic.IsFishingLose = false;
-            fishingPlace = null;
+            bobber.fishingPlace = null;
         }
     }
 
@@ -40,13 +42,8 @@ public class FishingSystem : MonoBehaviour
     {
         ResetFishingState();
         fishLogic.StartFishing();
-        fish.Initialization();
+        fish.Initialization(bobber.randomFishes);
         fishingHood.StartFishing();
-    }
-
-    private int GetRandomFish(List<ScriptableObject> _fishes)
-    {
-        return Random.Range(0, _fishes.Count);
     }
 
     public void ResetFishingState()

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31e3f9f0cba9f474985b0773994a360d, type: 3}
-  m_Name: Somi
+  m_Name: "\u0432\u043E\u0434\u043E\u0440\u043E\u0441\u043B\u0438"
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 69610a98dd10cab489d7c2fde3c2c7e5, type: 3}
-  _speed: 6
+  _sprite: {fileID: -1828690304, guid: 62ac10b75a33b5648aef1ef50de04c13, type: 3}
+  _speed: 1

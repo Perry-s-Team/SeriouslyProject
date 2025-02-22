@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    [SerializeField] private FishData fishData;
-
     public int speed;
     public SpriteRenderer sprite;
 
-    public void Initialization()
+    public void Initialization(FishData _randomFish)
     {
         sprite = GetComponent<SpriteRenderer>();
-        speed = fishData._speed;
-        sprite.sprite = fishData._sprite;
+        speed = _randomFish._speed;
+        sprite.sprite = _randomFish._sprite;
     }
 }

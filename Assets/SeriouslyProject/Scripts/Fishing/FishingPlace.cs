@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class FishingPlace : MonoBehaviour
 {
-    public List<ScriptableObject> fishes = new();
+    public List<FishData> fishes = new();
 }
