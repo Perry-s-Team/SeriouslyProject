@@ -13,9 +13,9 @@ public class ContextMenu : MonoBehaviour
 {
     [SerializeField] private FightManager fightManager;
     [SerializeField] private ContextText contextText;
+    [SerializeField] private List<Button> buttons = new();
 
     private RectTransform contextMenu;
-    [SerializeField] private List<Button> buttons = new();
     private List<TextMeshProUGUI> buttonTexts = new();
 
     private Character character;

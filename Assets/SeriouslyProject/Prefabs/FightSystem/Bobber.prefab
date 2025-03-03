@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4630124157784938427}
   - component: {fileID: 5430210824195777887}
   - component: {fileID: 1806490910934673499}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Bobber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -423682559
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &5430210824195777887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishingSystem: {fileID: 0}
+  fishingPlace: {fileID: 0}
+  fishes: []
+  randomFishes: {fileID: 0}

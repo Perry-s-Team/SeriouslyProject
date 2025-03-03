@@ -72,7 +72,7 @@ public class FishLogic : MonoBehaviour
         hoodMovement.progress = 0.4f;
         isFishingActive = false;
         fishingSystem.TryGetRandomFish();
-        objToAcive.gameObject.SetActive(false);
+        objToAcive.SetActive(false);
     }
 
     private void SetRandomPosition()

@@ -6,6 +6,8 @@ public class TestMovement : MonoBehaviour
 
     private new Rigidbody2D rigidbody;
 
+    public bool canMove = true;
+
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -13,7 +15,15 @@ public class TestMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 inputVector = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
+        if (canMove)
+        {
+            Moving();
+        }
+    }
+
+    private void Moving()
+    {
+        Vector2 inputVector = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         inputVector = inputVector.normalized;
         rigidbody.MovePosition(rigidbody.position + inputVector * (playerSpeed * Time.fixedDeltaTime));
     }

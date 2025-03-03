@@ -17,7 +17,7 @@ public class HoodMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
         {
