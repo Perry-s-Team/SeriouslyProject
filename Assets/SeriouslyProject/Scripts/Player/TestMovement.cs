@@ -1,31 +1,39 @@
 using UnityEngine;
 
-public class TestMovement : MonoBehaviour
+public class TestMovement : MonoBehaviour, ISceneLoader
 {
     [SerializeField] private float playerSpeed;
 
-    private new Rigidbody2D rigidbody;
-
     public bool canMove = true;
+
+    private Animator animator;
+    private Vector2 direction;
+    private new Rigidbody2D rigidbody;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (canMove)
-        {
-            Moving();
-        }
+        Moving();
     }
 
     private void Moving()
     {
-        Vector2 inputVector = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        inputVector = inputVector.normalized;
-        rigidbody.MovePosition(rigidbody.position + inputVector * (playerSpeed * Time.fixedDeltaTime));
+        direction.x = Input.GetAxisRaw("Horizontal");
+        direction.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
+    }
+
+    private void FixedUpdate()
+    {
+        rigidbody.MovePosition(rigidbody.position + direction * playerSpeed * Time.fixedDeltaTime);
     }
 
     public void FrezeMoving()
