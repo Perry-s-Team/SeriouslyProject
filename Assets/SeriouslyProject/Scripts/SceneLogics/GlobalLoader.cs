@@ -5,23 +5,33 @@ using System.IO;
 [DisallowMultipleComponent]
 public class GlobalLoader : MonoBehaviour
 {
-    [SerializeField] private string playerTag = "Player";
+    [SerializeField] private GameObject player;
 
-    private GameObject player;
+    private static GlobalLoader instance;
 
     private string SavePath => Path.Combine(Application.persistentDataPath, $"playerSave_{SceneManager.GetActiveScene().name}.json");
 
+
     private void Awake()
     {
+
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+
+        player = Instantiate(player);
         DontDestroyOnLoad(gameObject);
 
-        // Подписка на событие загрузки сцены
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+
     private void OnDestroy()
     {
-        // Отписка от события при уничтожении объекта
         SceneManager.sceneLoaded -= OnSceneLoaded;
         Save();
     }
@@ -31,21 +41,16 @@ public class GlobalLoader : MonoBehaviour
         Save();
     }
 
-    // Обработчик события загрузки сцены
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        player = GameObject.FindWithTag(playerTag);
-        if (player != null)
-        {
-            DontDestroyOnLoad(player);
-            Load(); // загружаем данные именно после загрузки сцены и появления игрока
-        }
+
+        DontDestroyOnLoad(player);
+        Load();
+
     }
 
     private void Save()
     {
-        if (player == null) return;
-
         var data = new PlayerData
         {
             Position = player.transform.position,
@@ -62,10 +67,7 @@ public class GlobalLoader : MonoBehaviour
         var json = File.ReadAllText(SavePath);
         var data = JsonUtility.FromJson<PlayerData>(json);
 
-        if (player != null)
-        {
-            player.transform.SetPositionAndRotation(data.Position, data.Rotation);
-        }
+        player.transform.SetPositionAndRotation(data.Position, data.Rotation);
     }
 
     [System.Serializable]
