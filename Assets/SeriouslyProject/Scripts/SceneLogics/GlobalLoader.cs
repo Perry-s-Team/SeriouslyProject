@@ -7,8 +7,10 @@ public class GlobalLoader : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
-    private static GlobalLoader instance;
+    public static GlobalLoader Instance => instance;
 
+    private static GlobalLoader instance;
+    private Vector3? overridePosition = null;
     private string SavePath => Path.Combine(Application.persistentDataPath, $"playerSave_{SceneManager.GetActiveScene().name}.json");
 
 
@@ -51,6 +53,8 @@ public class GlobalLoader : MonoBehaviour
 
     private void Save()
     {
+        if (player == null) return;
+
         var data = new PlayerData
         {
             Position = player.transform.position,
@@ -62,6 +66,15 @@ public class GlobalLoader : MonoBehaviour
 
     private void Load()
     {
+        if (player == null) return;
+
+        if (overridePosition != null)
+        {
+            player.transform.position = overridePosition.Value;
+            overridePosition = null;
+            return;
+        }
+
         if (!File.Exists(SavePath)) return;
 
         var json = File.ReadAllText(SavePath);
@@ -69,6 +82,13 @@ public class GlobalLoader : MonoBehaviour
 
         player.transform.SetPositionAndRotation(data.Position, data.Rotation);
     }
+
+    public void LoadToScene(string sceneToLoad, GameObject objectToLoad, Vector3 positionToLoad)
+    {
+        overridePosition = positionToLoad;
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
 
     [System.Serializable]
     private class PlayerData
