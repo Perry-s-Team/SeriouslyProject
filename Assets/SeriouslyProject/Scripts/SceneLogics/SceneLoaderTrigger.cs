@@ -6,11 +6,14 @@ public class SceneLoaderTrigger : MonoBehaviour
     [SerializeField] string nextSceneToLoad;
     [SerializeField] Vector3 nextPositionToLoad;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.TryGetComponent<ISceneLoader>(out var sceneLoader))
         {
-            GlobalLoader.Instance.LoadToScene(nextSceneToLoad, collision.gameObject, nextPositionToLoad);
+            if (Input.GetKey(KeyCode.E))
+            {
+                GlobalLoader.Instance.LoadToScene(nextSceneToLoad, collision.gameObject, nextPositionToLoad);
+            }
         }
     }
 }

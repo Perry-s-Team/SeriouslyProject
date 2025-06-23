@@ -12,8 +12,8 @@ ScriptedImporter:
   texturedSpriteMeshType: 0
   svgPixelsPerUnit: 100
   gradientResolution: 64
-  alignment: 0
-  customPivot: {x: 0, y: 0}
+  alignment: 9
+  customPivot: {x: 0.5, y: 0}
   generatePhysicsShape: 0
   viewportOptions: 0
   preserveViewport: 0
@@ -39,16 +39,16 @@ ScriptedImporter:
   spriteData:
     TessellationDetail: 0
     SpriteRect:
-      name: 
+      name: "\u0420\u0435\u0441\u0443\u0440\u0441 37Sprite"
       originalName: 
-      pivot: {x: 0, y: 0}
-      alignment: 0
+      pivot: {x: 0.4989714, y: 0.24923731}
+      alignment: 9
       border: {x: 0, y: 0, z: 0, w: 0}
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 0
-        height: 0
+        width: 73
+        height: 149
       spriteID: ecdc73f710b4a7c4088138905911596c
     PhysicsOutlines: []
