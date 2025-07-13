@@ -9,6 +9,7 @@ TagManager:
   - MenuPosition
   - Fishing
   - cameraBorder
+  - PlayerUI
   layers:
   - Default
   - TransparentFX
