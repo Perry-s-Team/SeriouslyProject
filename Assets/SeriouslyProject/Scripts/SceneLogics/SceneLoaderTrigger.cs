@@ -10,7 +10,7 @@ public class SceneLoaderTrigger : MonoBehaviour
     {
         if (collision.TryGetComponent<ISceneLoader>(out var sceneLoader))
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.F))
             {
                 GlobalLoader.Instance.LoadToScene(nextSceneToLoad, collision.gameObject, nextPositionToLoad);
             }

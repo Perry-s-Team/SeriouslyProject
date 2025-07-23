@@ -11,12 +11,20 @@ public class GlobalLoader : MonoBehaviour
 
     private static GlobalLoader instance;
     private Vector3? overridePosition = null;
+    /// <summary>
+    /// сохранение всего зависит от сцены тоесть к примеру сохранение язычка в одной сцене будет отличаться от сохранения в другой сцене
+    /// </summary>
     private string SavePath => Path.Combine(Application.persistentDataPath, $"playerSave_{SceneManager.GetActiveScene().name}.json");
 
+    private int selectedTongueIndex = 0;
+    public int SelectedTongueIndex
+    {
+        get => selectedTongueIndex;
+        set => selectedTongueIndex = value;
+    }
 
     private void Awake()
     {
-
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -31,7 +39,6 @@ public class GlobalLoader : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -45,10 +52,8 @@ public class GlobalLoader : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
         DontDestroyOnLoad(player);
         Load();
-
     }
 
     private void Save()
@@ -58,7 +63,8 @@ public class GlobalLoader : MonoBehaviour
         var data = new PlayerData
         {
             Position = player.transform.position,
-            Rotation = player.transform.rotation
+            Rotation = player.transform.rotation,
+            SelectedTongueIndex = selectedTongueIndex
         };
 
         File.WriteAllText(SavePath, JsonUtility.ToJson(data, true));
@@ -81,6 +87,7 @@ public class GlobalLoader : MonoBehaviour
         var data = JsonUtility.FromJson<PlayerData>(json);
 
         player.transform.SetPositionAndRotation(data.Position, data.Rotation);
+        selectedTongueIndex = data.SelectedTongueIndex;
     }
 
     public void LoadToScene(string sceneToLoad, GameObject objectToLoad, Vector3 positionToLoad)
@@ -89,11 +96,11 @@ public class GlobalLoader : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 
-
     [System.Serializable]
     private class PlayerData
     {
         public Vector3 Position;
         public Quaternion Rotation;
+        public int SelectedTongueIndex;
     }
 }
