@@ -3,10 +3,13 @@ using UnityEngine;
 public class ClickbleButtons : MonoBehaviour
 {
     [SerializeField] private PlayerUI playerUI;
+    [SerializeField] private KeyCode openInvenoryKey = KeyCode.E;
 
     private void Start()
     {
         playerUI = FindObjectOfType<PlayerUI>();
+        //заменить на загрузку из настроек 
+        openInvenoryKey = KeyCode.E;
     }
 
     private void Update()
@@ -16,7 +19,7 @@ public class ClickbleButtons : MonoBehaviour
 
     private void OpenPlayerIU()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(openInvenoryKey))
         {
             GameObject playerUIbackGround = playerUI.transform.GetChild(0).gameObject;
             playerUIbackGround.SetActive(!playerUIbackGround.activeInHierarchy);
