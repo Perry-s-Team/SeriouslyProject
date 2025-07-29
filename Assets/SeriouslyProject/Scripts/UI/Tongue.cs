@@ -1,15 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tongue : MonoBehaviour
+public class Tongue : SelectableTab
 {
-    [SerializeField] private GameObject objectToOpen;
-
-    public int index;
-
-    private bool isSelected = false;
-    private Animator animator;
-
     public bool IsSelected
     {
         get => isSelected;
@@ -21,9 +14,9 @@ public class Tongue : MonoBehaviour
             objectToOpen.SetActive(isSelected);
 
             if (isSelected)
-                PlaySelectAnimation();
+                PlayAnimationTrigger("Pressed");
             else
-                PlayDeselectAnimation();
+                PlayAnimationTrigger("Normal");
         }
     }
 
@@ -35,13 +28,8 @@ public class Tongue : MonoBehaviour
         button.onClick.AddListener(() => onClickCallback(index));
     }
 
-    public void PlaySelectAnimation()
+    public void PlayAnimationTrigger(string animation)
     {
-        animator.SetTrigger("Pressed");
-    }
-
-    public void PlayDeselectAnimation()
-    {
-        animator.SetTrigger("Normal");
+        animator.SetTrigger(animation);
     }
 }

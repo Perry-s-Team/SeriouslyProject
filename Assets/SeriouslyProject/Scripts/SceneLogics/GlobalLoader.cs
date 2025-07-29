@@ -12,7 +12,7 @@ public class GlobalLoader : MonoBehaviour
     private static GlobalLoader instance;
     private Vector3? overridePosition = null;
     /// <summary>
-    /// сохранение всего зависит от сцены тоесть к примеру сохранение язычка в одной сцене будет отличаться от сохранения в другой сцене
+    /// сохранение всего зависит от сцены тоесть к примеру сохранение язычка в одной сцене будет отличаться от сохранения в другой сцене это нужно изменить
     /// </summary>
     private string SavePath => Path.Combine(Application.persistentDataPath, $"playerSave_{SceneManager.GetActiveScene().name}.json");
 

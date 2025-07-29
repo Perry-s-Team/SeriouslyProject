@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private List<Tongue> tongues;
-    [SerializeField] private int selectedTongueIndex = 0;
+    private int selectedTongueIndex = 0;
 
     private void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerUI : MonoBehaviour
         if (tongues.Count > 0)
         {
             SelectTongue(selectedTongueIndex);
-            tongues[selectedTongueIndex].PlaySelectAnimation();
+            tongues[selectedTongueIndex].PlayAnimationTrigger("Pressed");
         }
     }
 
